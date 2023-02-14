@@ -1,0 +1,32 @@
+### Common Configuration ####
+spring:
+  profiles:
+    active: test-mysql
+server:
+  port: 8080
+---
+### H2 Database Test Profile ####
+spring:
+  config:
+    activate:
+      on-profile: test-h2
+  datasource:
+    url: jdbc:h2:mem:mydb
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+---
+### MySQL Test Profile ####
+spring:
+  config:
+    activate:
+      on-profile: test-mysql
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/school_test
+    username: root
+    password: admin
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true
